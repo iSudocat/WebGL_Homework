@@ -1,0 +1,40 @@
+<div style="padding-left: 20px; padding-top: 20px;">
+  <label>细分次数:</label>
+  <input id="tessellation" style="width:50px;" type="text" value="4">
+  <label>次</label>
+</div>
+
+<canvas id="gl-canvas" width="500" height="500">
+  Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+  attribute vec2 vPosition;
+  varying vec4 Color;
+  vec2 a = vec2(-sqrt(3.0) / 2.0, -0.5);
+  vec2 b = vec2(sqrt(3.0) / 2.0, -0.5);
+  vec2 c = vec2(0, 1);
+
+  void main() {
+      gl_Position = vec4(vPosition, 0.0, 1.0);
+      Color = vec4(distance(vPosition, a) / 2.0, distance(vPosition, b) / 2.0, distance(vPosition, c) / 2.0, 1.0);
+  }
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+  precision mediump float;
+  varying vec4 Color;
+  void main() {
+    gl_FragColor = Color;
+  }
+</script>
+
+</script>
+<script src='Common/webgl-utils.js'></script>
+<script src='Common/initShaders.js'></script>
+<script src='Common/MV.js'></script>
+<script src='Common/jquery-2.2.4.min.js'></script>
+<script src='Common/jquery-ui.min.js'></script>
+<script src='2.1.js'></script>
+</script>
